@@ -1,0 +1,23 @@
+{
+  "name": "tech-prep-red-set",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FSJS-TECH-PREP/Tech-Prep-Red-Set.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FSJS-TECH-PREP/Tech-Prep-Red-Set/issues"
+  },
+  "homepage": "https://github.com/FSJS-TECH-PREP/Tech-Prep-Red-Set#readme",
+  "devDependencies": {
+    "jest": "^29.6.2"
+  }
+}

@@ -1,0 +1,50 @@
+name: Autograding Tests
+'on':
+- workflow_dispatch
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: factorial
+      id: factorial
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: factorial
+        setup-command: npm install
+        command: npm test factorial.test.js
+        timeout: 10
+        max-score: 33
+    - name: findSameInteger
+      id: findsameinteger
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: findSameInteger
+        setup-command: npm install
+        command: npm test findSameInteger.test.js
+        timeout: 10
+        max-score: 33
+    - name: firstUniqueInteger
+      id: firstuniqueinteger
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: firstUniqueInteger
+        setup-command: npm install
+        command: npm test firstUniqueInteger.test.js
+        timeout: 10
+        max-score: 33
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        FACTORIAL_RESULTS: "${{steps.factorial.outputs.result}}"
+        FINDSAMEINTEGER_RESULTS: "${{steps.findsameinteger.outputs.result}}"
+        FIRSTUNIQUEINTEGER_RESULTS: "${{steps.firstuniqueinteger.outputs.result}}"
+      with:
+        runners: factorial,findsameinteger,firstuniqueinteger
